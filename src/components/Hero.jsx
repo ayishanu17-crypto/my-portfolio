@@ -1,5 +1,8 @@
 import { motion } from 'framer-motion';
 import { staggerContainer, fadeUp } from '../lib/motion';
+import StatusPulse from './StatusPulse';
+import MagneticButton from './MagneticButton';
+import Terminal from './Terminal';
 
 export default function Hero() {
   return (
@@ -19,64 +22,75 @@ export default function Hero() {
         }}
       />
 
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        animate="visible"
-        className="relative mx-auto max-w-content w-full"
-      >
-        <motion.p
-          variants={fadeUp}
-          className="font-mono text-xs md:text-sm uppercase tracking-[0.2em] text-accent mb-6"
-        >
-          CSE Undergrad — Full-Stack &amp; AI/ML
-        </motion.p>
+      <div className="relative mx-auto max-w-content w-full grid lg:grid-cols-[1.25fr_1fr] gap-14 items-center">
+        <motion.div variants={staggerContainer} initial="hidden" animate="visible">
+          <motion.div variants={fadeUp} className="mb-6 flex flex-wrap items-center gap-3">
+            <span className="font-mono text-xs md:text-sm uppercase tracking-[0.2em] text-accent">
+              CSE Undergrad — Full-Stack &amp; AI/ML
+            </span>
+          </motion.div>
 
-        <motion.h1
-          variants={fadeUp}
-          className="text-[13vw] md:text-[7.5vw] leading-[0.95] font-black tracking-tightest text-ink"
-        >
-          Ayisha Shaik
-        </motion.h1>
+          <motion.div variants={fadeUp} className="mb-6">
+            <StatusPulse label="Available for Summer internships" />
+          </motion.div>
 
-        <motion.p
-          variants={fadeUp}
-          className="mt-6 max-w-xl text-lg md:text-xl text-muted font-light leading-relaxed"
-        >
-          Third-year CSE student building production-ready web apps and
-          ML models under hackathon deadlines — React and TypeScript on
-          the frontend, Python and TensorFlow when the problem calls for it.
-        </motion.p>
-
-        <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-4">
-          <a
-            href="#work"
-            className="group inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-medium text-paper transition-transform duration-300 ease-out hover:-translate-y-0.5"
+          <motion.h1
+            variants={fadeUp}
+            className="text-[13vw] md:text-[6.5vw] leading-[0.95] font-black tracking-tightest text-ink"
           >
-            View my work
-            <svg
-              className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
-              viewBox="0 0 16 16"
-              fill="none"
+            Ayisha Shaik
+          </motion.h1>
+
+          <motion.p
+            variants={fadeUp}
+            className="mt-6 max-w-xl text-lg md:text-xl text-muted font-light leading-relaxed"
+          >
+            Second-year CSE student building production-ready web apps and
+            ML models under hackathon deadlines — React and TypeScript on
+            the frontend, Python and TensorFlow when the problem calls for it.
+          </motion.p>
+
+          <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-4">
+            <MagneticButton
+              href="#work"
+              className="group inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-medium text-paper"
             >
-              <path
-                d="M1 8h14M9 2l6 6-6 6"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </a>
+              View my work
+              <svg
+                className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <path
+                  d="M1 8h14M9 2l6 6-6 6"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </MagneticButton>
 
-          <a
-            href="mailto:ayishashaik1979@gmail.com"
-            className="inline-flex items-center gap-2 rounded-full border border-line px-7 py-3.5 text-sm font-medium text-ink transition-colors duration-300 hover:border-ink"
-          >
-            Get in touch
-          </a>
+            <MagneticButton
+              href="mailto:ayishashaik1979@gmail.com"
+              className="inline-flex items-center gap-2 rounded-full border border-line px-7 py-3.5 text-sm font-medium text-ink transition-colors duration-300 hover:border-ink"
+            >
+              Get in touch
+            </MagneticButton>
+          </motion.div>
         </motion.div>
-      </motion.div>
+
+        {/* Interactive terminal — hidden on the smallest screens to avoid
+            competing with the headline on a phone-sized viewport */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="hidden sm:flex justify-center lg:justify-end"
+        >
+          <Terminal />
+        </motion.div>
+      </div>
 
       {/* Scroll cue — transform/opacity only, respects reduced motion via Tailwind */}
       <motion.div

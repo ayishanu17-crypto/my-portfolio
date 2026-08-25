@@ -4,6 +4,7 @@ export const projects = [
     title: 'Kvantum Room',
     tagline: 'Real-time collaborative study platform',
     year: 'Feb 2026',
+    image: '/shots/kvantum-room.jpg',
     liveHref: 'https://ayishanu17-crypto.github.io/study-room/',
     repoHref: null, // add your GitHub repo link here
     problem:
@@ -24,6 +25,10 @@ export const projects = [
     caseStudy: {
       challenge:
         'The hardest problem was keeping chat, whiteboard strokes, and doubt-solver state consistent across multiple users without introducing lag that would break the feel of a live room.',
+      architecture:
+        'The frontend is a Vite + React app talking directly to Firebase — no custom backend. Each study room is a top-level node in the Realtime Database, with separate child nodes for chat, whiteboard strokes, and doubt threads, so clients only subscribe to the slices they actually need.',
+      dataFlow:
+        'When someone sends a message or draws a stroke, the client writes straight to that room\'s node; Firebase pushes the diff to every subscribed client. That direct write-and-push path is what keeps updates under 100ms without a server round-trip in the middle.',
       decisions:
         'I chose Firebase Realtime Database over a custom WebSocket server to move faster under the hackathon clock, structuring data so each module (chat, board, doubts) synced independently — a slow whiteboard render couldn\'t stall the chat.',
       tradeoffs:
@@ -35,6 +40,7 @@ export const projects = [
     title: 'Crop Care',
     tagline: 'Plant disease detection from a leaf photo',
     year: 'Jan 2026',
+    image: '/shots/crop-care.jpg',
     liveHref: 'https://cropcare-five.vercel.app/',
     repoHref: null, // add your GitHub repo link here
     problem:
@@ -52,9 +58,53 @@ export const projects = [
       { label: 'Training images', value: '~3,000' },
       { label: 'Disease classes', value: '5' },
     ],
-    caseStudy: null,
+    caseStudy: {
+      challenge:
+        'The trickiest part wasn\'t training the model — it was getting inference fast enough to feel real-time in a browser with no GPU on the client side.',
+      architecture:
+        'The CNN is trained offline in TensorFlow/Keras and exported, then served through a lightweight prediction endpoint the web app calls with an uploaded image. The frontend just handles the upload and renders the returned diagnosis.',
+      dataFlow:
+        'An uploaded leaf photo is resized and normalized before being sent to the model endpoint, which returns a class-probability distribution. The app surfaces the top match, its confidence, and matching treatment notes.',
+      decisions:
+        'I prioritized a smaller, faster CNN architecture over squeezing out extra accuracy points, since a diagnosis that takes 10+ seconds to load defeats the point for someone standing in a field.',
+      tradeoffs:
+        'Trading a little accuracy for speed felt like the right call for this use case. A v2 with on-device inference (TensorFlow.js) would remove the network round-trip entirely.',
+    },
+  },
+  {
+    slug: 'debugique',
+    title: 'Debugique',
+    tagline: 'Multi-language static code analysis application',
+    year: 'Feb 2026',
+    image: '/shots/debugique.jpg',
+    liveHref: 'https://bug-detection-gpwe.onrender.com',
+    repoHref: 'https://github.com/ayishanu17-crypto/bug-detection',
+    problem:
+      'Identifying code smells, syntax errors, and compatibility issues across multiple languages traditionally requires setting up complex, language-specific linters and environments.',
+    solution:
+      'A multi-language static analysis platform that runs local compile/AST checks (or falls back to heuristics) for JavaScript, Python, C/C++, and Java in a single interface, featuring dual-persistence history.',
+    stack: ['React', 'Tailwind CSS', 'Vite', 'Express', 'Node.js', 'MongoDB', 'Acorn'],
+    role: [
+      'Architected the React frontend and Express backend, organizing the codebase as a cohesive concurrently-managed monorepo',
+      'Engineered custom syntax engines using Acorn AST parsing for JS, Python AST interpreter, and compiler CLI flags (-fsyntax-only for C/C++) with regex fallbacks',
+      'Designed a hybrid history persistence system with MongoDB Atlas backend sync and local JSON file logging to prevent data loss offline',
+    ],
+    results: [
+      { label: 'Supported languages', value: '4' },
+      { label: 'Analysis speed', value: '<200ms' },
+      { label: 'History depth limit', value: '50' },
+    ],
+    caseStudy: {
+      challenge:
+        'Configuring reliable, server-side code analyzers for multiple languages without introducing heavy resource footprints or failing silently when local compiler binaries (like g++ or python3) were not installed.',
+      architecture:
+        'The Express server exposes a central analyze endpoint. It checks system environment capability at runtime: utilizing native compilation flags (-fsyntax-only for GCC) or interpreter AST validation if available, and gracefully falling back to AST parser libraries (Acorn) or robust regex heuristics otherwise.',
+      dataFlow:
+        'Code snippets are submitted via React. The backend runs the corresponding analyzer engine asynchronously, saves the analysis result to MongoDB Atlas (or drops back to local-history.json), and streams the syntax, smells, and fixes back to the client UI.',
+      decisions:
+        'I chose a hybrid persistence architecture (Atlas + Local JSON) to ensure the application remains functional in sandbox or offline server environments where MongoDB is not configured, silently merging local logs with remote logs on the history endpoint.',
+      tradeoffs:
+        'While regex heuristics for C++ and Java allowed the system to bypass environment installation bottlenecks, they lack full context scope and type checking compared to full-blown semantic compilers. A v2 would dockerize language-specific build-runners for deep static analysis.',
+    },
   },
 ];
-
-
-

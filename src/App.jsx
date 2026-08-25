@@ -1,7 +1,6 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
-import CaseStudy from './components/CaseStudy';
 import Skills from './components/Skills';
 import About from './components/About';
 import Contact from './components/Contact';
@@ -13,7 +12,6 @@ export default function App() {
       <main>
         <Hero />
         <Projects />
-        <CaseStudy />
         <Skills />
         <About />
         <Contact />
@@ -21,4 +19,3 @@ export default function App() {
     </div>
   );
 }
-

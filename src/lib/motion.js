@@ -28,6 +28,18 @@ export const fadeUp = {
   },
 };
 
+// Badge chips stagger in one-by-one, a beat faster than their parent
+// category, once it's in view. Used by Skills badges and similar tight grids.
+export const badgeStagger = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0.05,
+    },
+  },
+};
+
 // Scroll-triggered reveal for elements below the fold (e.g. project cards).
 // Slightly larger travel distance since it's a bigger "arrival" moment.
 export const scrollFadeUp = {

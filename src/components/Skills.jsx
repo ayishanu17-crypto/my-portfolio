@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { staggerContainer, scrollFadeUp } from '../lib/motion';
+import { staggerContainer, badgeStagger, scrollFadeUp, fadeUp } from '../lib/motion';
 
 const CATEGORIES = [
   {
@@ -47,13 +47,26 @@ export default function Skills() {
               <h3 className="font-mono text-xs uppercase tracking-wide text-muted mb-5 pb-3 border-b border-line">
                 {cat.label}
               </h3>
-              <ul className="space-y-3">
+
+              {/* Badges stagger in one-by-one, a beat faster than the
+                  category itself, once it's in view */}
+              <motion.div
+                variants={badgeStagger}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.4 }}
+                className="flex flex-wrap gap-2"
+              >
                 {cat.items.map((item) => (
-                  <li key={item} className="text-ink text-[15px]">
+                  <motion.span
+                    key={item}
+                    variants={fadeUp}
+                    className="rounded-full border border-line bg-paper px-3.5 py-1.5 text-[13px] text-ink"
+                  >
                     {item}
-                  </li>
+                  </motion.span>
                 ))}
-              </ul>
+              </motion.div>
             </motion.div>
           ))}
         </motion.div>

@@ -20,7 +20,7 @@ export default function Navbar() {
           className="font-mono text-sm tracking-tight text-ink"
           onClick={() => setOpen(false)}
         >
-          A. Shaik
+          Shaik Ayisha
           <span className="text-accent">.</span>
         </a>
 

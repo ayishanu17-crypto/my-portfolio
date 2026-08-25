@@ -3,7 +3,7 @@ import { staggerContainer, fadeUp } from '../lib/motion';
 
 const LINKS = [
   { label: 'GitHub', href: 'https://github.com/ayishanu17-crypto' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/ayishashaik' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/ayisha-shaik-60018a354' },
 ];
 
 export default function Contact() {
