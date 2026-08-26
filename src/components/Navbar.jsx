@@ -5,9 +5,13 @@ import { EASE } from '../lib/motion';
 const LINKS = [
   { label: 'Work', href: '#work' },
   { label: 'Skills', href: '#skills' },
+  { label: 'Experience', href: '#experience' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
+
+// Points at the resume file in /public — drop your own PDF over it.
+const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf`;
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -37,6 +41,29 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
+
+        {/* Desktop resume download */}
+        <a
+          href={RESUME_URL}
+          download
+          aria-label="Download résumé"
+          className="hidden md:inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-ink transition-colors duration-200 hover:bg-ink hover:text-paper hover:border-ink"
+        >
+          <svg
+            className="h-4 w-4"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M8 1v10m0 0 4-4M8 11 4 7M2 15h12"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </a>
 
         <a
           href="mailto:ayishashaik1979@gmail.com"
@@ -93,6 +120,30 @@ export default function Navbar() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href={RESUME_URL}
+                  download
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center gap-2 text-base text-accent py-1"
+                >
+                  <svg
+                    className="h-4 w-4"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M8 1v10m0 0 4-4M8 11 4 7M2 15h12"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  Résumé
+                </a>
+              </li>
             </ul>
           </motion.div>
         )}

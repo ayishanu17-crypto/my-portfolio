@@ -4,7 +4,7 @@ export const projects = [
     title: 'Kvantum Room',
     tagline: 'Real-time collaborative study platform',
     year: 'Feb 2026',
-    image: '/shots/kvantum-room.jpg',
+    image: `${import.meta.env.BASE_URL}shots/kvantum-room.jpg`,
     liveHref: 'https://ayishanu17-crypto.github.io/study-room/',
     repoHref: null, // add your GitHub repo link here
     problem:
@@ -40,7 +40,7 @@ export const projects = [
     title: 'Crop Care',
     tagline: 'Plant disease detection from a leaf photo',
     year: 'Jan 2026',
-    image: '/shots/crop-care.jpg',
+    image: `${import.meta.env.BASE_URL}shots/crop-care.jpg`,
     liveHref: 'https://cropcare-five.vercel.app/',
     repoHref: null, // add your GitHub repo link here
     problem:
@@ -76,9 +76,9 @@ export const projects = [
     title: 'Debugique',
     tagline: 'Multi-language static code analysis application',
     year: 'Feb 2026',
-    image: '/shots/debugique.jpg',
+    image: `${import.meta.env.BASE_URL}shots/debugique.jpg`,
     liveHref: 'https://bug-detection-gpwe.onrender.com',
-    repoHref: 'https://github.com/ayishanu17-crypto/bug-detection',
+    repoHref: null, // GitHub repo link removed — let the case study stand on its own
     problem:
       'Identifying code smells, syntax errors, and compatibility issues across multiple languages traditionally requires setting up complex, language-specific linters and environments.',
     solution:

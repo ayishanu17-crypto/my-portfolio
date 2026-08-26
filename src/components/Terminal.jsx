@@ -41,7 +41,7 @@ export default function Terminal() {
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
-      className="w-full max-w-md rounded-xl border border-line bg-ink overflow-hidden shadow-[0_30px_60px_-25px_rgba(10,10,11,0.45)]"
+      className="w-full max-w-md rounded-xl border border-line bg-[#0f0f13] overflow-hidden shadow-[0_30px_60px_-25px_rgba(0,0,0,0.6)]"
     >
       <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/10">
         <span className="h-2.5 w-2.5 rounded-full bg-white/15" />

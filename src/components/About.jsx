@@ -14,7 +14,7 @@ export default function About() {
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-4">
             About
           </p>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tightest text-ink">
+          <h2 className="font-display uppercase text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.9] tracking-tight text-ink">
             A little about how I work
           </h2>
         </motion.div>
@@ -46,18 +46,6 @@ export default function About() {
             Management Systems, I'm usually in a hackathon Discord or
             picking apart how a product I like is actually built.
           </p>
-
-          <div className="pt-6 border-t border-line">
-            <p className="font-mono text-[11px] uppercase tracking-wide text-muted mb-1">
-              Education
-            </p>
-            <p className="text-ink font-medium">
-              B.Tech in Computer Science and Engineering
-            </p>
-            <p className="text-sm text-muted">
-              PBR Visvodaya Institute of Technology and Science — Kavali, AP · July 2024 – Present
-            </p>
-          </div>
         </motion.div>
       </div>
     </section>

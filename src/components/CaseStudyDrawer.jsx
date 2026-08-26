@@ -36,7 +36,7 @@ export default function CaseStudyDrawer({ project, onClose }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             onClick={onClose}
-            className="fixed inset-0 z-[60] bg-ink/40 backdrop-blur-sm"
+            className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
           />
           <motion.div
             key="panel"
@@ -47,15 +47,15 @@ export default function CaseStudyDrawer({ project, onClose }) {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.4, ease: EASE }}
-            className="fixed top-0 right-0 z-[70] h-full w-full sm:w-[520px] bg-paper border-l border-line overflow-y-auto"
+            className="fixed top-0 right-0 z-[70] h-full w-full sm:w-[520px] bg-[#0d0d10] border-l border-white/10 overflow-y-auto"
           >
             <div className="p-8 md:p-10">
               <div className="flex items-start justify-between gap-4 mb-10">
                 <div>
-                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-2">
+                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#5b8bff] mb-2">
                     Case study
                   </p>
-                  <h3 className="text-3xl font-black tracking-tightest text-ink">
+                  <h3 className="text-3xl font-display uppercase tracking-tight text-white">
                     {project.title}
                   </h3>
                 </div>
@@ -63,7 +63,7 @@ export default function CaseStudyDrawer({ project, onClose }) {
                   type="button"
                   onClick={onClose}
                   aria-label="Close case study"
-                  className="h-9 w-9 shrink-0 rounded-full border border-line flex items-center justify-center text-ink transition-colors hover:bg-ink hover:text-paper"
+                  className="h-9 w-9 shrink-0 rounded-full border border-white/10 flex items-center justify-center text-white transition-colors hover:bg-white hover:text-black"
                 >
                   ✕
                 </button>
@@ -74,10 +74,10 @@ export default function CaseStudyDrawer({ project, onClose }) {
                   (f) =>
                     project.caseStudy[f.key] && (
                       <div key={f.key}>
-                        <h4 className="font-mono text-[11px] uppercase tracking-wide text-muted mb-2">
+                        <h4 className="font-mono text-[11px] uppercase tracking-wide text-white/40 mb-2">
                           {f.label}
                         </h4>
-                        <p className="text-ink/90 leading-relaxed">
+                        <p className="text-white/85 leading-relaxed">
                           {project.caseStudy[f.key]}
                         </p>
                       </div>

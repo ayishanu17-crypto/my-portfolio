@@ -4,16 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        paper: '#FFFFFF',      // base background
-        ink: '#0A0A0B',        // primary text
-        muted: '#6B7280',      // secondary text
-        line: '#E7E7EA',       // hairline borders
-        accent: '#1D4ED8',     // single restrained accent (indigo)
-        'accent-soft': '#EEF2FF',
+        paper: '#070709',      // base background (dark, matches Projects section)
+        ink: '#F4F4F6',        // primary text (near-white on dark)
+        muted: '#A1A1AA',      // secondary text
+        line: 'rgba(255,255,255,0.10)', // hairline borders
+        accent: '#5B8BFF',     // light indigo accent (works on dark)
+        'accent-soft': '#1B2645', // subtle indigo-tinted surface
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        display: ['"Bebas Neue"', 'Impact', 'sans-serif'],
+        hand: ['"Cedarville Cursive"', 'cursive'],
       },
       letterSpacing: {
         tightest: '-0.045em',

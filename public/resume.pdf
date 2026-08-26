@@ -1,0 +1,68 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R /F2 5 0 R /F3 6 0 R >> >> /Contents 7 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >>
+endobj
+7 0 obj
+<< /Length 2259 >>
+stream
+BT /F1 26 Tf 56 740 Td (AYISHA SHAIK) Tj ET
+BT /F2 12 Tf 56 709 Td (Full-Stack Developer · CSE Undergraduate · AI/ML) Tj ET
+BT /F2 10 Tf 56 684 Td (ayishashaik1979@gmail.com  |  github.com/ayishanu17-crypto  |  linkedin.com/in/ayisha-shaik-60018a354) Tj ET
+BT /F1 13 Tf 56 659 Td (PROFILE) Tj ET
+0.25 0.27 0.3 RG 0.8 w 56 641 m 556 641 l S
+BT /F1 10 Tf 56 629 Td (Engineering-oriented CSE undergraduate building production web apps and ML) Tj ET
+BT /F2 10 Tf 56 615 Td (models under hackathon deadlines. Full-stack on React and TypeScript; Python) Tj ET
+BT /F2 10 Tf 56 601 Td (and TensorFlow when the problem calls for it.) Tj ET
+BT /F1 13 Tf 56 579 Td (EXPERIENCE) Tj ET
+0.25 0.27 0.3 RG 0.8 w 56 561 m 556 561 l S
+BT /F1 10 Tf 56 549 Td (Full-Stack Developer - KVANTUM ROOM \(hackathon build\) | Feb 2026) Tj ET
+BT /F3 10 Tf 80 535 Td (ngineered real-time Firebase sync supporting 10+ concurrent users <100ms) Tj ET
+BT /F3 10 Tf 80 521 Td (hipped 5+ modules: live chat, AI doubt solver, shared whiteboard) Tj ET
+BT /F1 10 Tf 56 507 Td (ML Engineer - CROP CARE | Jan 2026) Tj ET
+BT /F3 10 Tf 80 493 Td (rained a CNN on ~3,000 labeled leaf images across 5 disease classes) Tj ET
+BT /F3 10 Tf 80 479 Td (eployed a web app that diagnoses a leaf photo in seconds) Tj ET
+BT /F1 10 Tf 56 465 Td (Developer & Architect - DEBUGIQUE | Feb 2026) Tj ET
+BT /F3 10 Tf 80 451 Td (ulti-language static analysis with custom AST engines \(JS/Py/C++/Java\)) Tj ET
+BT /F3 10 Tf 80 437 Td (ybrid persistence: MongoDB Atlas + local JSON fallback) Tj ET
+BT /F1 13 Tf 56 415 Td (SKILLS) Tj ET
+0.25 0.27 0.3 RG 0.8 w 56 397 m 556 397 l S
+BT /F1 10 Tf 56 385 Td (Languages: Python, Java, C, JavaScript, TypeScript, SQL, HTML/CSS) Tj ET
+BT /F1 10 Tf 56 371 Td (Frameworks & Platforms: React, Tailwind CSS, Vite, Firebase, MongoDB, Node.js) Tj ET
+BT /F1 10 Tf 56 357 Td (Tools: Git, GitHub, VS Code, Eclipse, Google Cloud Platform) Tj ET
+BT /F1 13 Tf 56 335 Td (EDUCATION) Tj ET
+0.25 0.27 0.3 RG 0.8 w 56 317 m 556 317 l S
+BT /F2 10 Tf 56 305 Td (B.Tech in Computer Science and Engineering) Tj ET
+BT /F2 10 Tf 56 291 Td (PBR Visvodaya Institute of Technology and Science - Kavali, AP) Tj ET
+BT /F2 10 Tf 56 277 Td (July 2024 - Present | Coursework: Data Structures, AI, DBMS) Tj ET
+endstream
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000261 00000 n 
+0000000336 00000 n 
+0000000406 00000 n 
+0000000484 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+2794
+%%EOF

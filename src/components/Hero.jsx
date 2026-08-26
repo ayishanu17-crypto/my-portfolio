@@ -3,6 +3,7 @@ import { staggerContainer, fadeUp } from '../lib/motion';
 import StatusPulse from './StatusPulse';
 import MagneticButton from './MagneticButton';
 import Terminal from './Terminal';
+import Typewriter from './Typewriter';
 
 export default function Hero() {
   return (
@@ -13,10 +14,10 @@ export default function Hero() {
       {/* Subtle static grid — pure CSS, no animation cost */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
+        className="pointer-events-none absolute inset-0 opacity-[0.06]"
         style={{
           backgroundImage:
-            'linear-gradient(to right, #0A0A0B 1px, transparent 1px), linear-gradient(to bottom, #0A0A0B 1px, transparent 1px)',
+            'linear-gradient(to right, #FFFFFF 1px, transparent 1px), linear-gradient(to bottom, #FFFFFF 1px, transparent 1px)',
           backgroundSize: '64px 64px',
           maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)',
         }}
@@ -31,21 +32,25 @@ export default function Hero() {
           </motion.div>
 
           <motion.div variants={fadeUp} className="mb-6">
-            <StatusPulse label="Available for Summer internships" />
+            <StatusPulse label="Available for internships" />
           </motion.div>
 
           <motion.h1
             variants={fadeUp}
-            className="text-[13vw] md:text-[6.5vw] leading-[0.95] font-black tracking-tightest text-ink"
+            className="font-display uppercase text-[clamp(3.5rem,13vw,9.5rem)] leading-[0.85] tracking-tight text-ink"
           >
             Ayisha Shaik
           </motion.h1>
+
+          <motion.div variants={fadeUp} className="mt-4">
+            <Typewriter />
+          </motion.div>
 
           <motion.p
             variants={fadeUp}
             className="mt-6 max-w-xl text-lg md:text-xl text-muted font-light leading-relaxed"
           >
-            Second-year CSE student building production-ready web apps and
+            Third-year CSE student building production-ready web apps and
             ML models under hackathon deadlines — React and TypeScript on
             the frontend, Python and TensorFlow when the problem calls for it.
           </motion.p>
@@ -102,7 +107,7 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-          className="h-9 w-[1px] bg-line"
+          className="h-9 w-[1px] bg-white/40"
         />
       </motion.div>
     </section>

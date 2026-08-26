@@ -1,169 +1,98 @@
-import { useState, useRef, useEffect } from 'react';
+﻿import { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { staggerContainer, badgeStagger, fadeUp, scrollFadeUp } from '../lib/motion';
+import { scrollFadeUp } from '../lib/motion';
 import { projects } from '../data/projects';
-import Counter from './Counter';
 import CaseStudyDrawer from './CaseStudyDrawer';
 
-function Corner({ className }) {
+// Editorial index label: 01, 02, 03...
+const indexLabel = (n) => String(n + 1).padStart(2, '0');
+
+function ProjectCard({ project, index, onOpenCase }) {
   return (
-    <svg viewBox="0 0 20 20" fill="none" className={className}>
-      <path d="M1 8V1h7" stroke="currentColor" strokeWidth="1.5" />
-    </svg>
-  );
-}
+    <motion.div variants={scrollFadeUp} className="group relative h-full w-full">
+      <div className="relative h-full w-full overflow-hidden rounded-3xl border border-white/10 bg-black/20 transition-colors duration-500 group-hover:border-white/25">
+        {/* Full-bleed screenshot, scales gently on hover */}
+        {project.image && (
+          <a
+            href={project.liveHref}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Open live site: ${project.title}`}
+            className="absolute inset-0 block"
+          >
+            <img
+              src={project.image}
+              alt={project.title}
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
+            />
+          </a>
+        )}
 
-function ProjectCard({ project, onOpenCaseStudy }) {
-  return (
-    <motion.div variants={scrollFadeUp} className="group relative rounded-2xl">
-      {/* Rotating conic-gradient "border" — a fixed rotating layer sitting
-          behind a padded inner panel, revealed only on hover via opacity.
-          Rotation uses `transform`, so it stays off the paint/layout path. */}
-      <div className="pointer-events-none absolute -inset-px rounded-2xl overflow-hidden opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-        <div className="absolute -left-1/2 -top-1/2 h-[200%] w-[200%] animate-[spin_5s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0%,theme(colors.accent)_10%,transparent_26%)]" />
-      </div>
+        {/* Legibility scrim from the bottom for the overlaid content */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050506ee] via-[#0a0a0b55] to-transparent" />
 
-      {/* Soft lifted shadow, faded in on hover via opacity only */}
-      <div className="pointer-events-none absolute -inset-4 -z-10 rounded-3xl opacity-0 shadow-[0_30px_60px_-20px_rgba(10,10,11,0.25)] transition-opacity duration-500 group-hover:opacity-100" />
+        {/* Hairline ring inside the frame, brightens on hover */}
+        <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10 transition duration-500 group-hover:ring-white/25" />
 
-      {/* Viewfinder corner marks */}
-      <div className="absolute top-2 left-2 z-10 h-4 w-4 scale-75 text-accent opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100">
-        <Corner className="h-full w-full" />
-      </div>
-      <div className="absolute bottom-2 right-2 z-10 h-4 w-4 rotate-180 scale-75 text-accent opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100">
-        <Corner className="h-full w-full" />
-      </div>
+        {/* Top meta rails */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between p-5 md:p-6">
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-xs tracking-[0.25em] text-white/70">
+              {indexLabel(index)}
+            </span>
+            <span className="h-px w-8 bg-white/30" />
+          </div>
+          <span className="font-mono text-xs uppercase tracking-[0.25em] text-white/50">
+            {project.year}
+          </span>
+        </div>
 
-      <div className="relative rounded-2xl border border-line bg-paper overflow-hidden">
-          {/* Screenshot slot */}
-          <div className="aspect-[16/10] w-full bg-accent-soft border-b border-line flex items-center justify-center overflow-hidden">
-            {project.image ? (
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                loading="lazy"
-              />
-            ) : (
-              <span className="font-mono text-xs uppercase tracking-wide text-accent/70">
-                Add screenshot — {project.title}
+        {/* Bottom content: big display title, tagline, tags, actions */}
+        <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
+          <h3 className="font-display text-[2.6rem] leading-[0.92] tracking-tight text-white uppercase md:text-5xl">
+            {project.title}
+          </h3>
+          <p className="mt-2 max-w-[28ch] text-sm text-white/60">{project.tagline}</p>
+
+          {project.stack?.length > 0 && (
+            <div className="mt-4 flex flex-wrap gap-1.5">
+              {project.stack.slice(0, 4).map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-white/70"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <div className="mt-5 flex items-center gap-5 border-t border-white/10 pt-4">
+            <a
+              href={project.liveHref}
+              target="_blank"
+              rel="noreferrer"
+              className="group/link flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-white transition-colors hover:text-white/80"
+            >
+              Live site
+              <span className="transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1">
+                ↗
               </span>
+            </a>
+            {project.caseStudy && (
+              <button
+                type="button"
+                onClick={() => onOpenCase(project)}
+                className="font-mono text-xs uppercase tracking-widest text-white/50 transition-colors hover:text-white"
+              >
+                Case study
+              </button>
             )}
           </div>
-
-          <div className="p-8 md:p-10">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3 className="text-2xl md:text-3xl font-semibold tracking-tight text-ink">
-                  {project.title}
-                </h3>
-                <p className="mt-1 text-sm text-muted">{project.tagline}</p>
-              </div>
-              <span className="shrink-0 pt-2 font-mono text-xs text-muted">{project.year}</span>
-            </div>
-
-            <div className="mt-6 space-y-3">
-              <p className="text-sm leading-relaxed">
-                <span className="mr-2 font-mono text-[11px] uppercase tracking-wide text-accent">
-                  Problem
-                </span>
-                <span className="text-muted">{project.problem}</span>
-              </p>
-              <p className="text-sm leading-relaxed">
-                <span className="mr-2 font-mono text-[11px] uppercase tracking-wide text-accent">
-                  Solution
-                </span>
-                <span className="text-muted">{project.solution}</span>
-              </p>
-            </div>
-
-            {/* Tech stack — staggered badge entrance on scroll */}
-            <motion.div
-              variants={badgeStagger}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.6 }}
-              className="mt-6 flex flex-wrap gap-2"
-            >
-              {project.stack.map((tag) => (
-                <motion.span
-                  key={tag}
-                  variants={fadeUp}
-                  className="rounded-full border border-line px-3 py-1 font-mono text-[11px] uppercase tracking-wide text-muted"
-                >
-                  {tag}
-                </motion.span>
-              ))}
-            </motion.div>
-
-            <ul className="mt-6 space-y-2">
-              {project.role.map((line) => (
-                <li key={line} className="flex gap-2.5 text-sm leading-relaxed text-ink/90">
-                  <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-accent" />
-                  {line}
-                </li>
-              ))}
-            </ul>
-
-            {/* Measurable results — staggered, count up when scrolled into view */}
-            <motion.div
-              variants={badgeStagger}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
-              className="mt-8 grid grid-cols-3 gap-4 border-t border-line pt-6"
-            >
-              {project.results.map((r) => (
-                <motion.div key={r.label} variants={fadeUp}>
-                  <div className="text-xl md:text-2xl font-black tracking-tight text-ink">
-                    <Counter value={r.value} />
-                  </div>
-                  <div className="mt-1 text-[11px] leading-tight text-muted">{r.label}</div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            <div className="mt-8 flex flex-wrap items-center gap-5">
-              <a
-                href={project.liveHref}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent"
-              >
-                Live demo
-                <svg className="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none">
-                  <path
-                    d="M1 8h14M9 2l6 6-6 6"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </a>
-              {project.repoHref && (
-                <a
-                  href={project.repoHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-sm font-medium text-muted transition-colors hover:text-ink"
-                >
-                  Source code
-                </a>
-              )}
-              {project.caseStudy && (
-                <button
-                  type="button"
-                  onClick={() => onOpenCaseStudy(project)}
-                  className="text-sm font-medium text-accent underline decoration-line underline-offset-4 transition-colors hover:decoration-accent"
-                >
-                  View case study
-                </button>
-              )}
-            </div>
-          </div>
         </div>
-      </motion.div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -180,13 +109,16 @@ export default function Projects() {
   useEffect(() => {
     const updateTranslation = () => {
       if (!scrollRef.current) return;
+      // The card row is `w-fit`, so it never scrolls internally, its
+      // clientWidth is identical to its scrollWidth. To know how far the row
+      // must travel, compare its full content width against the viewport width.
       const scrollWidth = scrollRef.current.scrollWidth;
-      const clientWidth = scrollRef.current.clientWidth;
-      const maxTranslate = scrollWidth - clientWidth;
+      const viewportWidth = targetRef.current?.clientWidth ?? window.innerWidth;
+      const maxTranslate = scrollWidth - viewportWidth;
       setTranslateX(maxTranslate > 0 ? -maxTranslate : 0);
     };
 
-    // Delay calculation slightly to ensure CSS layouts/images are computed
+    // Delay calculation slightly so CSS layouts/images are computed first
     const timer = setTimeout(updateTranslation, 100);
     window.addEventListener('resize', updateTranslation);
     return () => {
@@ -198,31 +130,40 @@ export default function Projects() {
   const x = useTransform(scrollYProgress, [0, 1], [0, translateX]);
 
   return (
-    <section ref={targetRef} id="work" className="relative h-[300vh] bg-paper">
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden py-12">
-        <div className="mx-auto max-w-content w-full px-6 md:px-10 mb-12">
-          <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-accent">
-            Featured work
+    <section ref={targetRef} id="work" className="relative h-[300vh] bg-[#070709] text-white">
+      <div className="sticky top-0 flex h-screen flex-col overflow-y-auto overflow-x-hidden">
+        {/* Header */}
+        <div className="mx-auto flex w-full max-w-[1500px] shrink-0 flex-wrap items-end justify-between gap-x-6 gap-y-2 px-6 pt-7 pb-3 md:px-14 md:pt-10">
+          <div>
+            <p className="mb-2 font-mono text-xs uppercase tracking-[0.25em] text-[#5b8bff]">
+              Selected work
+            </p>
+            <h2 className="font-display text-[clamp(3.5rem,10vw,8.5rem)] leading-[0.85] text-white uppercase">
+              Projects
+            </h2>
+            <p className="mt-1 font-hand text-xl text-white/40">things I&apos;ve shipped</p>
+          </div>
+          <p className="hidden shrink-0 font-mono text-xs uppercase tracking-[0.25em] text-white/40 lg:block">
+            Keep scrolling →
           </p>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tightest text-ink">
-            Things I've shipped
-          </h2>
         </div>
 
-        <div className="relative">
+        {/* Horizontally travelling card row (driven by vertical scroll) */}
+        <div className="relative min-h-0 flex-1">
           <motion.div
             ref={scrollRef}
             style={{ x }}
-            className="flex gap-8 px-6 md:px-16 w-fit"
+            className="flex h-full gap-6 px-6 pt-2 pb-8 md:gap-10 md:px-14"
           >
-            {projects.map((project) => (
+            {projects.map((project, i) => (
               <div
                 key={project.slug}
-                className="shrink-0 w-[85vw] sm:w-[400px] md:w-[440px] lg:w-[480px]"
+                className="h-full shrink-0 w-[88vw] sm:w-[360px] md:w-[420px] lg:w-[480px]"
               >
                 <ProjectCard
                   project={project}
-                  onOpenCaseStudy={setActiveCaseStudy}
+                  index={i}
+                  onOpenCase={setActiveCaseStudy}
                 />
               </div>
             ))}
