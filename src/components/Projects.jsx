@@ -130,12 +130,12 @@ export default function Projects() {
   const x = useTransform(scrollYProgress, [0, 1], [0, translateX]);
 
   return (
-    <section ref={targetRef} id="work" className="relative h-[300vh] bg-[#070709] text-white">
+    <section ref={targetRef} id="work" className="relative h-[300vh] bg-[#0C0C0C] text-white">
       <div className="sticky top-0 flex h-screen flex-col overflow-y-auto overflow-x-hidden">
         {/* Header */}
         <div className="mx-auto flex w-full max-w-[1500px] shrink-0 flex-wrap items-end justify-between gap-x-6 gap-y-2 px-6 pt-7 pb-3 md:px-14 md:pt-10">
           <div>
-            <p className="mb-2 font-mono text-xs uppercase tracking-[0.25em] text-[#5b8bff]">
+            <p className="mb-2 font-mono text-xs uppercase tracking-[0.25em] text-[#10B981]">
               Selected work
             </p>
             <h2 className="font-display text-[clamp(3.5rem,10vw,8.5rem)] leading-[0.85] text-white uppercase">

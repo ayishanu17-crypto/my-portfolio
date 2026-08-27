@@ -63,7 +63,7 @@ export default function Contact() {
                 strokeLinejoin="round"
               />
             </svg>
-            Download résumé
+            Download resume
           </motion.a>
         </div>
 

@@ -36,8 +36,8 @@ export default function ToolsGrid() {
   return (
     <div className="mt-16 md:mt-20 relative overflow-hidden border-y border-white/10 bg-white/[0.02] py-3">
       {/* Fade masks at either edge */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#070709] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#070709] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#0C0C0C] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#0C0C0C] to-transparent" />
 
       <motion.div
         className="flex w-max items-center gap-3 px-3"

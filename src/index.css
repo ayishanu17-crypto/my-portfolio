@@ -14,6 +14,13 @@
   }
 }
 
+/* Hero name — yellow-400 #FACC15 (clean yellow, not golden), solid, no shimmer */
+@layer utilities {
+  .gradient-name {
+    color: #facc15;
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

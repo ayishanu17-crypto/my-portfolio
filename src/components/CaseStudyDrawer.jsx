@@ -47,12 +47,12 @@ export default function CaseStudyDrawer({ project, onClose }) {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.4, ease: EASE }}
-            className="fixed top-0 right-0 z-[70] h-full w-full sm:w-[520px] bg-[#0d0d10] border-l border-white/10 overflow-y-auto"
+            className="fixed top-0 right-0 z-[70] h-full w-full sm:w-[520px] bg-[#0C0C0C] border-l border-white/10 overflow-y-auto"
           >
             <div className="p-8 md:p-10">
               <div className="flex items-start justify-between gap-4 mb-10">
                 <div>
-                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#5b8bff] mb-2">
+                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#10B981] mb-2">
                     Case study
                   </p>
                   <h3 className="text-3xl font-display uppercase tracking-tight text-white">

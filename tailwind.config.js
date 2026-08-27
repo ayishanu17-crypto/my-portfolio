@@ -4,12 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        paper: '#070709',      // base background (dark, matches Projects section)
+        paper: '#0C0C0C',      // base background (oily black)
         ink: '#F4F4F6',        // primary text (near-white on dark)
         muted: '#A1A1AA',      // secondary text
         line: 'rgba(255,255,255,0.10)', // hairline borders
-        accent: '#5B8BFF',     // light indigo accent (works on dark)
-        'accent-soft': '#1B2645', // subtle indigo-tinted surface
+        accent: '#10B981',     // Emerald accent
+        'accent-soft': '#0E2B1D', // subtle emerald-tinted surface
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
