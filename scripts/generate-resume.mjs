@@ -41,7 +41,7 @@ const GROUPS = [
     items: [
       'Languages: Python, Java, C, JavaScript, TypeScript, SQL, HTML/CSS',
       'Frameworks & Platforms: React, Tailwind CSS, Vite, Firebase, MongoDB, Node.js',
-      'Tools: Git, GitHub, VS Code, Eclipse, Google Cloud Platform',
+      'Tools: Git, GitHub, VS Code,Antigravity, Eclipse, Google Cloud Platform',
     ],
   },
   {

@@ -6,6 +6,7 @@ const TOOLS = [
   'Git',
   'GitHub',
   'VS Code',
+  'Antigravity',
   'React',
   'Node.js',
   'MongoDB',

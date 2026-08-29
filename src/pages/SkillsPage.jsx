@@ -4,6 +4,7 @@ import { goHome } from '../lib/router';
 import { SiPython, SiOpenjdk, SiC, SiJavascript, SiTypescript, SiMysql, SiHtml5 } from 'react-icons/si';
 import { SiReact, SiTailwindcss, SiVite, SiFirebase, SiMongodb, SiNodedotjs } from 'react-icons/si';
 import { SiGit, SiGithub, SiVscodium } from 'react-icons/si';
+import { LuRocket } from 'react-icons/lu';
 
 // The full toolbox — divided into categories.
 const LANGUAGES = [
@@ -27,6 +28,7 @@ const TOOLS = [
   { name: 'Git', Icon: SiGit, color: '#F05032' },
   { name: 'GitHub', Icon: SiGithub, color: '#F4F4F6' },
   { name: 'VS Code', Icon: SiVscodium, color: '#007ACC' },
+  { name: 'Antigravity', Icon: LuRocket, color: '#FF6A00' },
 ];
 
 // Small helper — one tile in the languages/frameworks grid.

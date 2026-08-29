@@ -46,7 +46,8 @@ export default function Contact() {
           <motion.a
             variants={fadeUp}
             href={RESUME_URL}
-            download
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-white/25 px-8 py-4 text-base font-medium text-ink transition-colors duration-300 hover:bg-white hover:text-black hover:border-white"
           >
             <svg
@@ -63,7 +64,7 @@ export default function Contact() {
                 strokeLinejoin="round"
               />
             </svg>
-            Download resume
+            View resume
           </motion.a>
         </div>
 
