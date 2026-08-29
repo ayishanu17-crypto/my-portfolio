@@ -19,7 +19,7 @@ const EXPERIENCE = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="px-6 md:px-10 py-28 md:py-36 bg-white/[0.02]">
+    <section id="experience" className="px-6 md:px-10 py-28 md:py-36">
       <div className="mx-auto max-w-content">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -28,9 +28,6 @@ export default function Experience() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16 max-w-xl"
         >
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-4">
-            Career &amp; experience
-          </p>
           <h2 className="font-display uppercase text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.9] tracking-tight text-ink">
             Experience
           </h2>
@@ -58,7 +55,7 @@ export default function Experience() {
               {/* Timeline node */}
               <span
                 aria-hidden="true"
-                className="absolute left-0 md:left-0.5 top-1.5 h-3.5 w-3.5 md:h-4 md:w-4 rounded-full border-2 border-accent bg-paper transition-colors duration-300 group-hover:bg-accent"
+                className="absolute left-0 md:left-0.5 top-1.5 h-3.5 w-3.5 md:h-4 md:w-4 rounded-full border-2 border-white bg-paper transition-colors duration-300 group-hover:bg-white"
               />
 
               <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
@@ -66,7 +63,7 @@ export default function Experience() {
                   <h3 className="font-display uppercase text-2xl md:text-3xl tracking-tight text-ink">
                     {exp.role}
                   </h3>
-                  <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-0.5 font-mono text-[10px] uppercase tracking-wider text-accent">
+                  <span className="rounded-full border border-white/15 bg-white/5 px-3 py-0.5 font-mono text-[10px] uppercase tracking-wider text-white">
                     {exp.kind}
                   </span>
                 </div>
@@ -75,13 +72,13 @@ export default function Experience() {
                 </p>
               </div>
 
-              <p className="mt-2 font-mono text-sm text-accent">{exp.org}</p>
+              <p className="mt-2 font-mono text-sm text-white">{exp.org}</p>
               <p className="mt-0.5 font-mono text-xs text-muted">{exp.location}</p>
 
               <ul className="mt-4 space-y-2">
                 {exp.points.map((point) => (
                   <li key={point} className="flex gap-3 text-[15px] text-muted leading-relaxed">
-                    <span aria-hidden="true" className="mt-[9px] h-px w-4 shrink-0 bg-accent/60" />
+                    <span aria-hidden="true" className="mt-[9px] h-px w-4 shrink-0 bg-white/60" />
                     {point}
                   </li>
                 ))}

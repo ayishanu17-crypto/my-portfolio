@@ -1,59 +1,53 @@
 import { motion } from 'framer-motion';
-import { SiGit, SiGithub, SiVscodium, SiReact, SiNodedotjs, SiMongodb, SiFirebase, SiTailwindcss, SiVite } from 'react-icons/si';
 
 // The tools actually in use — shown as a moving marquee line below the
 // technologies grid. Only these are kept.
 const TOOLS = [
-  { name: 'Git',      Icon: SiGit },
-  { name: 'GitHub',   Icon: SiGithub },
-  { name: 'VS Code',  Icon: SiVscodium },
-  { name: 'React',    Icon: SiReact },
-  { name: 'Node.js',  Icon: SiNodedotjs },
-  { name: 'MongoDB',  Icon: SiMongodb },
-  { name: 'Firebase', Icon: SiFirebase },
-  { name: 'Tailwind', Icon: SiTailwindcss },
-  { name: 'Vite',     Icon: SiVite },
+  'Git',
+  'GitHub',
+  'VS Code',
+  'React',
+  'Node.js',
+  'MongoDB',
+  'Firebase',
+  'Tailwind',
+  'Vite',
 ];
 
-// Brand colour per tool so the marks read like the real logos on the dark
-// theme (GitHub uses a neutral since its brand black would vanish).
-const BRAND_COLORS = {
-  Git: '#F05032',
-  GitHub: '#F6F8FA',
-  'VS Code': '#007ACC',
-  React: '#61DAFB',
-  'Node.js': '#339933',
-  MongoDB: '#47A248',
-  Firebase: '#FFCA28',
-  Tailwind: '#38BDF8',
-  Vite: '#646CFF',
-};
+// A decorative symbol shown between each tool word.
+const SEPARATOR = '✦';
 
-// An infinitely scrolling marquee of the tool marks. The list is rendered
-// twice (200% width) and translated by exactly -50%, so the loop is seamless.
+// An infinitely scrolling marquee of the tool names, in the same yellow as the
+// hero name (#FFFF00). Plain words only — no chips, no borders — with a small
+// symbol between them. The list is rendered twice (200% width) and translated
+// by exactly -50%, so the loop is seamless.
 export default function ToolsGrid() {
   const doubled = [...TOOLS, ...TOOLS];
   return (
-    <div className="mt-16 md:mt-20 relative overflow-hidden border-y border-white/10 bg-white/[0.02] py-3">
+    <div className="relative mt-16 md:mt-20 overflow-hidden py-5">
       {/* Fade masks at either edge */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#0C0C0C] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#0C0C0C] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#000000] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#000000] to-transparent" />
 
       <motion.div
-        className="flex w-max items-center gap-3 px-3"
+        className="flex w-max items-center"
         animate={{ x: ['0%', '-50%'] }}
         transition={{ duration: 30, ease: 'linear', repeat: Infinity }}
       >
         {doubled.map((tool, i) => (
-          <span
-            key={`${tool.name}-${i}`}
-            className="flex shrink-0 items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5"
+          <div
+            key={`${tool}-${i}`}
+            className="flex shrink-0 items-center"
           >
-            <tool.Icon aria-hidden="true" className="h-3.5 w-3.5" style={{ color: BRAND_COLORS[tool.name] }} />
-            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/50">
-              {tool.name}
+            {/* The tool word — plain yellow text, no shapes */}
+            <span className="font-mono text-sm md:text-base uppercase tracking-[0.25em] text-[#FFFF00]">
+              {tool}
             </span>
-          </span>
+            {/* Symbol between the words */}
+            <span aria-hidden="true" className="mx-5 md:mx-7 text-[#FFFF00]">
+              {SEPARATOR}
+            </span>
+          </div>
         ))}
       </motion.div>
     </div>

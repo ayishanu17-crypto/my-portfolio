@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        paper: '#0C0C0C',      // base background (oily black)
+        paper: '#000000',      // base background (oily black)
         ink: '#F4F4F6',        // primary text (near-white on dark)
         muted: '#A1A1AA',      // secondary text
         line: 'rgba(255,255,255,0.10)', // hairline borders

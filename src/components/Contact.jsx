@@ -20,7 +20,7 @@ export default function Contact() {
       >
         <motion.p
           variants={fadeUp}
-          className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-6"
+          className="font-mono text-xs uppercase tracking-[0.2em] text-white mb-6"
         >
           Get in touch
         </motion.p>

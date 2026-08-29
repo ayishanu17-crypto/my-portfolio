@@ -1,12 +1,17 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { EASE } from '../lib/motion';
+import { getRoute, navigateToSection } from '../lib/router';
+
+// These menu items are separate pages (hash routes); the rest are in-page
+// anchors that scroll the home page.
+const PAGE_HASHES = new Set(['#/about', '#/skills']);
 
 const LINKS = [
+  { label: 'About', href: '#/about' },
   { label: 'Work', href: '#work' },
-  { label: 'Skills', href: '#skills' },
+  { label: 'Skills', href: '#/skills' },
   { label: 'Experience', href: '#experience' },
-  { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -16,16 +21,25 @@ const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf`;
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
+  // Page links use the hash router. Section links scroll on home; from a
+  // separate page (about/skills) they switch back home first, then scroll.
+  const handleNavClick = (e, href) => {
+    if (!PAGE_HASHES.has(href) && getRoute() !== 'home') {
+      e.preventDefault();
+      navigateToSection(href);
+    }
+    setOpen(false);
+  };
+
   return (
     <header className="fixed top-0 inset-x-0 z-50 pointer-events-none">
       {/* Floating circular hamburger — top right */}
-      <div className="absolute top-5 right-5 md:top-7 md:right-8 flex flex-col items-end gap-3">
-        <button
+      <button
           type="button"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="pointer-events-auto relative flex h-14 w-14 flex-col items-center justify-center gap-[5px] rounded-full border border-line bg-paper/80 backdrop-blur-md text-ink transition-colors duration-300 hover:border-accent/60 hover:bg-paper"
+          className="pointer-events-auto absolute top-5 right-5 md:top-7 md:right-8 z-[75] flex h-14 w-14 flex-col items-center justify-center gap-[5px] rounded-full border border-line bg-paper/80 backdrop-blur-md text-ink transition-colors duration-300 hover:border-accent/60 hover:bg-paper"
         >
           <motion.span
             className="block h-[1.5px] w-6 bg-current"
@@ -44,28 +58,56 @@ export default function Navbar() {
           />
         </button>
 
-        {/* Dropdown panel with all sections */}
+        {/* Slide-in menu panel — same open animation as the case study */}
         <AnimatePresence>
           {open && (
-            <motion.nav
-              initial={{ opacity: 0, y: -8, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.98 }}
-              transition={{ duration: 0.25, ease: EASE }}
-              className="pointer-events-auto w-56 rounded-2xl border border-line bg-paper/90 backdrop-blur-xl p-2 shadow-2xl shadow-black/40"
-            >
-              <ul className="flex flex-col">
+            <>
+              <motion.div
+                key="backdrop"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                onClick={() => setOpen(false)}
+                className="pointer-events-auto fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
+              />
+              <motion.nav
+                key="panel"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Site menu"
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ duration: 0.4, ease: EASE }}
+                className="pointer-events-auto fixed top-0 right-0 z-[70] h-full w-[85vw] sm:w-[340px] bg-[#000000] border-l border-white/10 overflow-y-auto"
+              >
+                <div className="p-8 md:p-10">
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <p className="font-mono text-xs uppercase tracking-[0.2em] text-white">
+                      Menu
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setOpen(false)}
+                      aria-label="Close menu"
+                      className="h-9 w-9 shrink-0 rounded-full border border-white/10 flex items-center justify-center text-white transition-colors hover:bg-white hover:text-black"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                  <ul className="flex flex-col">
                 {LINKS.map((link) => (
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      onClick={() => setOpen(false)}
+                      onClick={(e) => handleNavClick(e, link.href)}
                       className="group flex items-center justify-between rounded-xl px-4 py-2.5 text-sm text-muted transition-colors duration-200 hover:bg-white/[0.04] hover:text-ink"
                     >
                       {link.label}
                       <span
                         aria-hidden="true"
-                        className="text-accent opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                        className="text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100"
                       >
                         ↗
                       </span>
@@ -82,7 +124,7 @@ export default function Navbar() {
                     href={RESUME_URL}
                     download
                     onClick={() => setOpen(false)}
-                    className="inline-flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-sm text-accent transition-colors duration-200 hover:bg-white/[0.04]"
+                    className="inline-flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-sm text-white transition-colors duration-200 hover:bg-white/[0.04]"
                   >
                     <svg
                       className="h-4 w-4"
@@ -108,7 +150,7 @@ export default function Navbar() {
                     className="inline-flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-sm text-ink transition-colors duration-200 hover:bg-white/[0.04]"
                   >
                     <svg
-                      className="h-4 w-4 text-accent"
+                      className="h-4 w-4 text-white"
                       viewBox="0 0 16 16"
                       fill="none"
                       aria-hidden="true"
@@ -124,11 +166,12 @@ export default function Navbar() {
                     Let&#39;s talk
                   </a>
                 </li>
-              </ul>
-            </motion.nav>
+                  </ul>
+                </div>
+              </motion.nav>
+            </>
           )}
         </AnimatePresence>
-      </div>
     </header>
   );
 }

@@ -65,7 +65,7 @@ export default function Terminal() {
         onSubmit={handleSubmit}
         className="flex items-center gap-2 px-4 py-3 border-t border-white/10"
       >
-        <span className="font-mono text-sm text-accent">{'›'}</span>
+        <span className="font-mono text-sm text-white">{'›'}</span>
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}

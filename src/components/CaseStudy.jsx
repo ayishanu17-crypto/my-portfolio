@@ -25,7 +25,7 @@ export default function CaseStudy() {
           transition={{ duration: 0.7, ease: EASE }}
           className="mb-12 max-w-xl"
         >
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-4">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-white mb-4">
             Case study
           </p>
           <h2 className="text-3xl md:text-4xl font-black tracking-tightest text-ink">
@@ -56,7 +56,7 @@ export default function CaseStudy() {
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.25, ease: EASE }}
-                    className="text-2xl text-accent leading-none shrink-0"
+                    className="text-2xl text-white leading-none shrink-0"
                   >
                     +
                   </motion.span>

@@ -1,51 +1,38 @@
 import { motion } from 'framer-motion';
-import { EASE } from '../lib/motion';
+import { staggerContainer, fadeUp } from '../lib/motion';
 
+// Teaser on the home page — the full story lives on its own page (#/about).
 export default function About() {
   return (
-    <section id="about" className="px-6 md:px-10 py-28 md:py-36">
-      <div className="mx-auto max-w-content grid grid-cols-1 md:grid-cols-[1fr_1.3fr] gap-12 md:gap-20">
+    <section id="about" className="px-6 md:px-10 py-28 md:py-40">
+      <div className="mx-auto max-w-3xl text-center">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.7, ease: EASE }}
-        >
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-4">
-            About
-          </p>
-          <h2 className="font-display uppercase text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.9] tracking-tight text-ink">
-            A little about how I work
-          </h2>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
-          className="space-y-6"
         >
-          <p className="text-lg text-muted leading-relaxed">
-            I'm a Third-year Computer Science and Engineering student at PBR
-            Visvodaya Institute of Technology and Science, specializing in
-            full-stack web development and AI/ML applications. Most of what
-            I've learned has come from building under pressure — hackathon
-            weekends where an idea has to go from sketch to working demo in
-            48 hours.
-          </p>
-          <p className="text-lg text-muted leading-relaxed">
-            That environment shaped how I work: I'd rather ship something
-            small and functional than something ambitious and half-built.
-            I care about interfaces that feel considered, and about the
-            unglamorous parts underneath them — sync latency, model
-            accuracy, responsive edge cases — actually holding up.
-          </p>
-          <p className="text-lg text-muted leading-relaxed">
-            Outside of coursework in Data Structures, AI, and Database
-            Management Systems, I'm usually in a hackathon Discord or
-            picking apart how a product I like is actually built.
-          </p>
+          <motion.h2
+            variants={fadeUp}
+            className="font-display uppercase text-[clamp(2.75rem,6vw,4.5rem)] leading-[0.9] tracking-tight text-ink"
+          >
+            About me
+          </motion.h2>
+          <motion.p
+            variants={fadeUp}
+            className="mx-auto mt-6 max-w-xl text-lg text-muted leading-relaxed"
+          >
+            I'm Ayisha — a Full-Stack Developer with a growing passion for AI/ML. I love turning ideas into functional, meaningful digital experiences and learning whatever it takes to make them better.I build fast, ship clean, and
+            care about the details most people never notice.
+          </motion.p>
+          <motion.a
+            variants={fadeUp}
+            href="#/about"
+            className="mt-10 inline-flex items-center gap-2 rounded-full border border-white/25 px-7 py-3 text-sm font-medium text-ink transition-colors duration-300 hover:bg-white hover:text-black hover:border-white"
+          >
+            Read my story
+            <span aria-hidden="true">→</span>
+          </motion.a>
         </motion.div>
       </div>
     </section>

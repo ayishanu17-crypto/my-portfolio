@@ -54,7 +54,7 @@ export default function Typewriter() {
 
   if (reduced) {
     return (
-      <span className="font-mono text-xl md:text-3xl tracking-tight font-medium text-accent">
+      <span className="font-mono text-xl md:text-3xl tracking-tight font-medium text-white">
         Full-Stack Developer <span className="text-muted">|</span> AI/ML Enthusiast
       </span>
     );
@@ -64,12 +64,12 @@ export default function Typewriter() {
     <span
       role="text"
       aria-label="Full-Stack Developer, AI/ML Enthusiast"
-      className="inline-flex items-center font-mono text-xl md:text-3xl tracking-tight font-medium text-accent"
+      className="inline-flex items-center font-mono text-xl md:text-3xl tracking-tight font-medium text-white"
     >
       <span aria-hidden="true">{text}</span>
       <span
         aria-hidden="true"
-        className="ml-1 inline-block h-[1em] w-[2px] translate-y-[0.08em] bg-accent"
+        className="ml-1 inline-block h-[1em] w-[2px] translate-y-[0.08em] bg-white"
         style={{ animation: 'blink 1.1s step-end infinite' }}
       />
     </span>

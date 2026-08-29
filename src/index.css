@@ -14,10 +14,10 @@
   }
 }
 
-/* Hero name — yellow-400 #FACC15 (clean yellow, not golden), solid, no shimmer */
+/* Hero name — #FFFF00 (bright yellow), solid, no shimmer */
 @layer utilities {
   .gradient-name {
-    color: #facc15;
+    color: #FFFF00;
   }
 }
 
