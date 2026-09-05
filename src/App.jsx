@@ -8,10 +8,12 @@ import About from './components/About';
 import Contact from './components/Contact';
 import AboutPage from './pages/AboutPage';
 import SkillsPage from './pages/SkillsPage';
-import { useRoute, takePendingSection } from './lib/router';
+import CaseStudyPage from './pages/CaseStudyPage';
+import { useRoute, useCaseStudySlug, takePendingSection } from './lib/router';
 
 export default function App() {
   const route = useRoute();
+  const caseStudySlug = useCaseStudySlug();
 
   // If a nav click queued a section scroll (e.g. from the About page), run it
   // once the home layout has actually rendered.
@@ -34,6 +36,8 @@ export default function App() {
           <AboutPage />
         ) : route === 'skills' ? (
           <SkillsPage />
+        ) : route === 'case-study' ? (
+          <CaseStudyPage slug={caseStudySlug} />
         ) : (
           <>
             <Hero />
@@ -48,3 +52,4 @@ export default function App() {
     </div>
   );
 }
+

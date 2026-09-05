@@ -2,16 +2,36 @@ export const projects = [
   {
     slug: 'kvantum-room',
     title: 'Kvantum Room',
+    category: 'Real-Time Web Application',
     tagline: 'Real-time collaborative study platform',
+    timeline: 'Feb 2026 · Hackathon Project',
     year: 'Feb 2026',
     image: `${import.meta.env.BASE_URL}shots/kvantum-room.jpg`,
     liveHref: 'https://ayishanu17-crypto.github.io/study-room/',
-    repoHref: null, // add your GitHub repo link here
+    repoHref: null,
     problem:
       'Students studying remotely juggle separate apps for chat, whiteboarding, and getting quick help — there was no single space to collaborate in real time.',
     solution:
       'A unified study room where classmates chat, draw on a shared whiteboard, and get instant AI-assisted answers, all synced live.',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Firebase'],
+    features: [
+      {
+        title: 'Instant Multi-User Sync',
+        desc: 'Sub-100ms bidirectional synchronization between 10+ participants across chat and board.',
+      },
+      {
+        title: 'Collaborative Vector Canvas',
+        desc: 'Interactive whiteboard allowing multiple students to draw, annotate, and brainstorm concurrently.',
+      },
+      {
+        title: 'AI Doubt Assistant',
+        desc: 'Contextual AI solver integrated directly inside the room for rapid conceptual resolution.',
+      },
+      {
+        title: 'Zero-Server Architecture',
+        desc: 'Serverless client-to-Firebase architecture reducing infrastructure overhead to zero.',
+      },
+    ],
     role: [
       'Engineered the real-time sync layer on Firebase, supporting 10+ concurrent users at sub-100ms latency',
       'Built 5+ core modules, including live chat, an AI-powered doubt solver, and a shared whiteboard',
@@ -38,16 +58,36 @@ export const projects = [
   {
     slug: 'crop-care',
     title: 'Crop Care',
+    category: 'Computer Vision & Deep Learning',
     tagline: 'Plant disease detection from a leaf photo',
+    timeline: 'Jan 2026 · AI/ML System',
     year: 'Jan 2026',
     image: `${import.meta.env.BASE_URL}shots/crop-care.jpg`,
     liveHref: 'https://cropcare-five.vercel.app/',
-    repoHref: null, // add your GitHub repo link here
+    repoHref: null,
     problem:
       'Farmers often lack quick access to plant pathologists, so diseases can go undiagnosed until crop damage is severe.',
     solution:
       'A CNN that classifies common plant diseases from a single leaf photo, paired with a web app that returns a diagnosis and treatment steps in seconds.',
     stack: ['Python', 'TensorFlow', 'Keras', 'HTML/CSS/JS'],
+    features: [
+      {
+        title: 'Deep CNN Classifier',
+        desc: 'Trained on 3,000+ augmented plant leaf images achieving 92% overall validation accuracy.',
+      },
+      {
+        title: 'Instant Treatment Advisory',
+        desc: 'Maps detected pathology directly to practical botanical recommendations and organic treatment steps.',
+      },
+      {
+        title: 'Low-Bandwidth Optimization',
+        desc: 'Pre-processes and resizes image payloads on the browser to minimize upload bandwidth for rural users.',
+      },
+      {
+        title: '5 Multi-Class Pathologies',
+        desc: 'Detects diverse leaf conditions ranging from fungal blights to bacterial spots.',
+      },
+    ],
     role: [
       'Built and trained a CNN on ~3,000 labeled images across 5 disease classes',
       'Improved accuracy through image preprocessing and data augmentation',
@@ -74,16 +114,36 @@ export const projects = [
   {
     slug: 'debugique',
     title: 'Debugique',
+    category: 'Developer Tooling & Static Analysis',
     tagline: 'Multi-language static code analysis application',
+    timeline: 'Feb 2026 · Full-Stack Platform',
     year: 'Feb 2026',
     image: `${import.meta.env.BASE_URL}shots/debugique.jpg`,
     liveHref: 'https://bug-detection-gpwe.onrender.com',
-    repoHref: null, // GitHub repo link removed — let the case study stand on its own
+    repoHref: null,
     problem:
       'Identifying code smells, syntax errors, and compatibility issues across multiple languages traditionally requires setting up complex, language-specific linters and environments.',
     solution:
       'A multi-language static analysis platform that runs local compile/AST checks (or falls back to heuristics) for JavaScript, Python, C/C++, and Java in a single interface, featuring dual-persistence history.',
     stack: ['React', 'Tailwind CSS', 'Vite', 'Express', 'Node.js', 'MongoDB', 'Acorn'],
+    features: [
+      {
+        title: 'Multi-Language AST Engine',
+        desc: 'AST-driven lexical analysis for JavaScript, Python, C/C++, and Java with sub-200ms turnaround.',
+      },
+      {
+        title: 'Dual-Persistence Engine',
+        desc: 'Seamless hybrid architecture writing to MongoDB Atlas while buffering to local JSON offline.',
+      },
+      {
+        title: 'Code Smell & Lint Diagnostics',
+        desc: 'Pinpoints antipatterns, missing delimiters, unreachable branches, and performance pitfalls.',
+      },
+      {
+        title: 'Audit History & Diffing',
+        desc: 'Tracks up to 50 historical audits with one-click restore and comparison views.',
+      },
+    ],
     role: [
       'Architected the React frontend and Express backend, organizing the codebase as a cohesive concurrently-managed monorepo',
       'Engineered custom syntax engines using Acorn AST parsing for JS, Python AST interpreter, and compiler CLI flags (-fsyntax-only for C/C++) with regex fallbacks',

@@ -1,13 +1,12 @@
-﻿import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { scrollFadeUp } from '../lib/motion';
 import { projects } from '../data/projects';
-import CaseStudyDrawer from './CaseStudyDrawer';
 
 // Editorial index label: 01, 02, 03...
 const indexLabel = (n) => String(n + 1).padStart(2, '0');
 
-function ProjectCard({ project, index, onOpenCase }) {
+function ProjectCard({ project, index }) {
   return (
     <motion.div variants={scrollFadeUp} className="group relative h-full w-full">
       <div className="relative h-full w-full overflow-hidden rounded-3xl border border-white/10 bg-black/20 transition-colors duration-500 group-hover:border-white/25">
@@ -81,13 +80,12 @@ function ProjectCard({ project, index, onOpenCase }) {
               </span>
             </a>
             {project.caseStudy && (
-              <button
-                type="button"
-                onClick={() => onOpenCase(project)}
+              <a
+                href={`#/case-study/${project.slug}`}
                 className="font-mono text-xs uppercase tracking-widest text-white/50 transition-colors hover:text-white"
               >
-                Case study
-              </button>
+                Case study →
+              </a>
             )}
           </div>
         </div>
@@ -97,7 +95,6 @@ function ProjectCard({ project, index, onOpenCase }) {
 }
 
 export default function Projects() {
-  const [activeCaseStudy, setActiveCaseStudy] = useState(null);
   const targetRef = useRef(null);
   const scrollRef = useRef(null);
   const [translateX, setTranslateX] = useState(0);
@@ -160,15 +157,13 @@ export default function Projects() {
                 <ProjectCard
                   project={project}
                   index={i}
-                  onOpenCase={setActiveCaseStudy}
                 />
               </div>
             ))}
           </motion.div>
         </div>
       </div>
-
-      <CaseStudyDrawer project={activeCaseStudy} onClose={() => setActiveCaseStudy(null)} />
     </section>
   );
 }
+

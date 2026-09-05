@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { staggerContainer, fadeUp, EASE } from '../lib/motion';
 import { goHome } from '../lib/router';
-import { SiPython, SiOpenjdk, SiC, SiJavascript, SiTypescript, SiMysql, SiHtml5 } from 'react-icons/si';
+import { SiPython, SiJavascript, SiTypescript, SiMysql, SiHtml5 } from 'react-icons/si';
+
 import { SiReact, SiTailwindcss, SiVite, SiFirebase, SiMongodb, SiNodedotjs } from 'react-icons/si';
 import { SiGit, SiGithub, SiVscodium } from 'react-icons/si';
 import { LuRocket } from 'react-icons/lu';
