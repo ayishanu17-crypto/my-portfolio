@@ -1,3 +1,6 @@
+// Resolve a public asset path relative to the deployment base URL
+const shot = (file) => `${import.meta.env.BASE_URL}${file}`;
+
 export const projects = [
   {
     slug: 'kvantum-room',
@@ -6,9 +9,16 @@ export const projects = [
     tagline: 'Real-time collaborative study platform',
     timeline: 'Feb 2026 · Hackathon Project',
     year: 'Feb 2026',
-    image: `${import.meta.env.BASE_URL}shots/kvantum-room.jpg`,
+    image: `${import.meta.env.BASE_URL}shots/kvantum-room-live.png`,
     liveHref: 'https://ayishanu17-crypto.github.io/study-room/',
     repoHref: null,
+    screenshots: [
+      { file: shot('shots/kvantum-room-live.png'), caption: 'Kvantum Room — live app landing view', tag: 'Deployed capture' },
+      { file: shot('shots/kvantum-room-live-full.png'), caption: 'Kvantum Room — full-page view', tag: 'Deployed capture' },
+      { file: shot('shots/kvantum-dashboard.jpg'), caption: 'Study dashboard', tag: 'Interface view' },
+      { file: shot('shots/kvantum-chat-room.jpg'), caption: 'Real-time chat room', tag: 'Interface view' },
+      { file: shot('shots/kvantum-ai-solver.jpg'), caption: 'AI doubt assistant', tag: 'Interface view' },
+    ],
     problem:
       'Students studying remotely juggle separate apps for chat, whiteboarding, and getting quick help — there was no single space to collaborate in real time.',
     solution:
@@ -62,9 +72,14 @@ export const projects = [
     tagline: 'Plant disease detection from a leaf photo',
     timeline: 'Jan 2026 · AI/ML System',
     year: 'Jan 2026',
-    image: `${import.meta.env.BASE_URL}shots/crop-care.jpg`,
+    image: `${import.meta.env.BASE_URL}shots/crop-care-live.png`,
     liveHref: 'https://cropcare-five.vercel.app/',
     repoHref: null,
+    screenshots: [
+      { file: shot('shots/crop-care-live.png'), caption: 'Crop Care — live landing page', tag: 'Deployed capture' },
+      { file: shot('shots/crop-care-live-full.png'), caption: 'Crop Care — full-page view', tag: 'Deployed capture' },
+      { file: shot('shots/crop-treatment-plan.jpg'), caption: 'Treatment plan output', tag: 'Interface view' },
+    ],
     problem:
       'Farmers often lack quick access to plant pathologists, so diseases can go undiagnosed until crop damage is severe.',
     solution:
@@ -118,9 +133,16 @@ export const projects = [
     tagline: 'Multi-language static code analysis application',
     timeline: 'Feb 2026 · Full-Stack Platform',
     year: 'Feb 2026',
-    image: `${import.meta.env.BASE_URL}shots/debugique.jpg`,
+    // HOME PAGE SCREENSHOT → add the file at: public/shots/debugique-home.png
+    image: `${import.meta.env.BASE_URL}shots/debugique-home.png`, // Projects section card image
     liveHref: 'https://bug-detection-gpwe.onrender.com',
     repoHref: null,
+    screenshots: [
+      // Front card — home page screenshot → add the file at: public/shots/debugique-home.png
+      { file: shot('shots/debugique-home.png'), caption: 'Debugique — home page dashboard', tag: 'Homepage' },
+      // Back card (second image, layered behind the home page) → file at: public/shots/debugique-analysis1.jpeg
+      { file: shot('shots/debugique-analysis1.jpeg'), caption: 'Debugique — static analysis engine in action', tag: 'Interface view' },
+    ],
     problem:
       'Identifying code smells, syntax errors, and compatibility issues across multiple languages traditionally requires setting up complex, language-specific linters and environments.',
     solution:

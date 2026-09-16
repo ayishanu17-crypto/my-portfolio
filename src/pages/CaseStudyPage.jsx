@@ -163,73 +163,100 @@ export default function CaseStudyPage({ slug }) {
             </motion.section>
           )}
 
-          {/* Screenshot Showcase Container */}
-          {project.image && (
-            <motion.section variants={fadeUp} aria-label="Project screenshot showcase">
-              <div className="group relative overflow-hidden rounded-3xl border border-white/15 bg-black/60 shadow-2xl">
-                {/* Browser top-bar chrome */}
-                <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.04] px-5 py-3.5 backdrop-blur-md">
-                  <div className="flex items-center gap-2">
-                    <span className="h-3 w-3 rounded-full bg-red-500/80" />
-                    <span className="h-3 w-3 rounded-full bg-yellow-500/80" />
-                    <span className="h-3 w-3 rounded-full bg-green-500/80" />
-                  </div>
-                  <div className="font-mono text-xs text-white/40 truncate max-w-xs md:max-w-md">
-                    {project.liveHref || `https://${project.slug}.app`}
-                  </div>
-                  <div className="w-12 text-right font-mono text-[10px] text-white/30">
-                    LIVE PREVIEW
-                  </div>
+          {/* Pictures + The Context split — screens on one side, matter on the other */}
+          {project.screenshots && project.screenshots.length > 0 && (
+            <motion.section variants={fadeUp} aria-label="Project screenshots and context">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 lg:items-center">
+                {/* Layered floating screenshots — one side of the page */}
+                <div
+                  className="relative mx-auto w-full max-w-[560px] px-2 py-8 [perspective:1300px]"
+                  aria-label={`${project.title} interface screenshots, layered composition`}
+                >
+                  {(() => {
+                    const ss = project.screenshots;
+                    const front = ss[0];
+                    const backLeft =
+                      ss.length > 2 ? ss[2] : ss.length === 2 ? ss[1] : null;
+                    return (
+                      <>
+                        {/* back-left — smaller, tilted behind the primary */}
+                        {backLeft && (
+                          <div className="absolute left-0 top-[2%] z-[1] aspect-[16/10] w-[56%] -rotate-[10deg] overflow-hidden rounded-xl border border-white/10 bg-black/40 shadow-[0_18px_36px_-12px_rgba(0,0,0,0.55)]">
+                            <img
+                              src={backLeft.file}
+                              alt={`${project.title} — ${backLeft.caption}`}
+                              loading="lazy"
+                              className="h-full w-full object-cover object-top"
+                            />
+                          </div>
+                        )}
+
+                        {/* front primary — the visual focus */}
+                        <a
+                          href={project.liveHref}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={`Open live site: ${project.title}`}
+                          className="group relative z-[3] mx-auto block aspect-[16/10] w-[80%] rotate-[1.5deg] overflow-hidden rounded-2xl border border-white/15 bg-black/40 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.65)] transition-transform duration-500 hover:-translate-y-1"
+                        >
+                          <img
+                            src={front.file}
+                            alt={`${project.title} — ${front.caption}`}
+                            loading="lazy"
+                            className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                          />
+                        </a>
+                      </>
+                    );
+                  })()}
                 </div>
 
-                <div className="relative aspect-[16/10] md:aspect-[16/9] w-full overflow-hidden bg-black">
-                  <img
-                    src={project.image}
-                    alt={`${project.title} interface preview`}
-                    className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                  />
-                  {/* Subtle vignette */}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                {/* The Context — matter on the other side */}
+                <div className="space-y-6 md:space-y-8">
+                  <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-white/40">
+                    The Context
+                  </h2>
+
+                  <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 md:p-9 space-y-4">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-red-500/20 bg-red-500/10 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-red-400">
+                      <span className="h-1.5 w-1.5 rounded-full bg-red-400" />
+                      The Problem
+                    </div>
+                    <h3 className="font-display uppercase text-2xl tracking-tight text-white">
+                      Why this needed to be built
+                    </h3>
+                    <p className="text-base md:text-lg text-muted leading-relaxed">
+                      {project.problem}
+                    </p>
+                  </div>
+
+                  <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 md:p-9 space-y-4">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-emerald-400">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                      The Solution
+                    </div>
+                    <h3 className="font-display uppercase text-2xl tracking-tight text-white">
+                      How the system solves it
+                    </h3>
+                    <p className="text-base md:text-lg text-muted leading-relaxed">
+                      {project.solution}
+                    </p>
+                  </div>
+
+                  {project.liveHref && (
+                    <a
+                      href={project.liveHref}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#FFFF00] transition-colors hover:text-white"
+                    >
+                      Launch live app <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.section>
           )}
-
-          {/* Problem vs Solution Split */}
-          <motion.section variants={fadeUp} className="space-y-8">
-            <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-white/40">
-              The Context
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {/* Problem */}
-              <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-8 md:p-10 space-y-4">
-                <div className="inline-flex items-center gap-2 rounded-full border border-red-500/20 bg-red-500/10 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-red-400">
-                  <span className="h-1.5 w-1.5 rounded-full bg-red-400" />
-                  The Problem
-                </div>
-                <h3 className="font-display uppercase text-2xl md:text-3xl tracking-tight text-white">
-                  Why this needed to be built
-                </h3>
-                <p className="text-base md:text-lg text-muted leading-relaxed">
-                  {project.problem}
-                </p>
-              </div>
-
-              {/* Solution */}
-              <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-8 md:p-10 space-y-4">
-                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-emerald-400">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  The Solution
-                </div>
-                <h3 className="font-display uppercase text-2xl md:text-3xl tracking-tight text-white">
-                  How the system solves it
-                </h3>
-                <p className="text-base md:text-lg text-muted leading-relaxed">
-                  {project.solution}
-                </p>
-              </div>
-            </div>
-          </motion.section>
 
           {/* Core Feature Highlights */}
           {project.features && (
