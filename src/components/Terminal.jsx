@@ -5,7 +5,7 @@ const RESPONSES = {
   help: "Commands: help, about, skills, projects, contact, clear",
   about: 'CSE undergrad · full-stack + AI/ML · builds fast under hackathon deadlines.',
   skills: 'Languages: Python, Java, C, JS/TS, SQL — Frameworks: React, Tailwind, Firebase, Node',
-  projects: 'Kvantum Room — real-time study platform. Crop Care — plant disease CNN. Scroll to see both ↓',
+  projects: 'Roomora — AI interior design studio. Kvantum Room — real-time study platform. Crop Care — plant disease CNN. Debugique — code analysis platform. Scroll to see all ↓',
   contact: 'ayishashaik1979@gmail.com · github.com/ayishanu17-crypto',
 };
 

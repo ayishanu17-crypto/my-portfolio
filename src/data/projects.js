@@ -3,66 +3,65 @@ const shot = (file) => `${import.meta.env.BASE_URL}${file}`;
 
 export const projects = [
   {
-    slug: 'kvantum-room',
-    title: 'Kvantum Room',
-    category: 'Real-Time Web Application',
-    tagline: 'Real-time collaborative study platform',
-    timeline: 'Feb 2026 · Hackathon Project',
-    year: 'Feb 2026',
-    image: `${import.meta.env.BASE_URL}shots/kvantum-room-live.png`,
-    liveHref: 'https://ayishanu17-crypto.github.io/study-room/',
+    slug: 'roomora',
+    title: 'Roomora',
+    category: 'AI & Generative Interior Design',
+    tagline: 'AI-powered interior design & room makeover studio',
+    timeline: 'Mar 2026 · Full-Stack AI Platform',
+    year: 'Mar 2026',
+    image: `${import.meta.env.BASE_URL}shots/roomora-live.png`,
+    liveHref: 'https://roomora-ecru-eight.vercel.app/',
     repoHref: null,
     screenshots: [
-      { file: shot('shots/kvantum-room-live.png'), caption: 'Kvantum Room — live app landing view', tag: 'Deployed capture' },
-      { file: shot('shots/kvantum-room-live-full.png'), caption: 'Kvantum Room — full-page view', tag: 'Deployed capture' },
-      { file: shot('shots/kvantum-dashboard.jpg'), caption: 'Study dashboard', tag: 'Interface view' },
-      { file: shot('shots/kvantum-chat-room.jpg'), caption: 'Real-time chat room', tag: 'Interface view' },
-      { file: shot('shots/kvantum-ai-solver.jpg'), caption: 'AI doubt assistant', tag: 'Interface view' },
+      { file: shot('shots/roomora-live.png'), caption: 'Roomora — live landing page and hero showcase', tag: 'Deployed capture' },
+      { file: shot('shots/roomora-studio.png'), caption: 'Design studio — room photo upload, 12 aesthetic styles & budget matrix', tag: 'Studio view' },
+      { file: shot('shots/roomora-shop.png'), caption: 'Inspiration gallery — curated aesthetic styles and themes', tag: 'Interface view' },
+      { file: shot('shots/roomora-live-full.png'), caption: 'Workflow overview — 3-step design pipeline', tag: 'Workflow view' },
     ],
     problem:
-      'Students studying remotely juggle separate apps for chat, whiteboarding, and getting quick help — there was no single space to collaborate in real time.',
+      'Hiring professional interior designers is cost-prohibitive for most homeowners and renters, while traditional 3D architectural software involves steep learning curves and hours of manual modeling.',
     solution:
-      'A unified study room where classmates chat, draw on a shared whiteboard, and get instant AI-assisted answers, all synced live.',
-    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Firebase'],
+      'An intelligent room makeover platform that leverages Google Gemini multimodal AI to analyze room photos, generate photorealistic redesigns across 12 distinct interior styles, provide conversational design advisory with voice recognition, and suggest budget-matched furniture shopping links.',
+    stack: ['React', 'Google Gemini', 'Node.js', 'Express', 'Firebase', 'Tailwind CSS'],
     features: [
       {
-        title: 'Instant Multi-User Sync',
-        desc: 'Sub-100ms bidirectional synchronization between 10+ participants across chat and board.',
+        title: 'Multimodal Room Transformation',
+        desc: 'Analyzes user-uploaded space photos and generates tailored photorealistic redesigns mapped to 12 curated styles (Japandi, Scandinavian, Dark Academia, Biophilic, etc.).',
       },
       {
-        title: 'Collaborative Vector Canvas',
-        desc: 'Interactive whiteboard allowing multiple students to draw, annotate, and brainstorm concurrently.',
+        title: 'Voice-Enabled AI Design Assistant',
+        desc: 'Integrated conversational designer with Web Speech API recognition, answering layout queries and offering contextual color, lighting, and placement advice.',
       },
       {
-        title: 'AI Doubt Assistant',
-        desc: 'Contextual AI solver integrated directly inside the room for rapid conceptual resolution.',
+        title: 'Contextual Shopping Curations',
+        desc: 'Extracts furniture recommendations directly from AI advisory and parses product links into clickable shopping actions with budget constraints.',
       },
       {
-        title: 'Zero-Server Architecture',
-        desc: 'Serverless client-to-Firebase architecture reducing infrastructure overhead to zero.',
+        title: 'Client-Side Adaptive Compression',
+        desc: 'Dynamic progressive multi-pass image compression ensuring fast uploads and sub-2MB Firestore storage limits without visual fidelity loss.',
       },
     ],
     role: [
-      'Engineered the real-time sync layer on Firebase, supporting 10+ concurrent users at sub-100ms latency',
-      'Built 5+ core modules, including live chat, an AI-powered doubt solver, and a shared whiteboard',
-      'Implemented a fully responsive UI tested across 3+ device viewports with Tailwind CSS',
+      'Architected the full-stack system with React 19, Vite, Express, and Google GenAI SDK integration',
+      'Engineered conversational AI assistant with speech recognition, automated shopping URL extractors, and prompt pipelines',
+      'Implemented Firebase Authentication and Cloud Firestore syncing with multi-pass client-side canvas image compression',
     ],
     results: [
-      { label: 'Concurrent users', value: '10+' },
-      { label: 'Sync latency', value: '<100ms' },
-      { label: 'Core modules shipped', value: '5+' },
+      { label: 'Design Styles', value: '12' },
+      { label: 'AI Turnaround', value: '<3s' },
+      { label: 'Payload Reduction', value: '~70%' },
     ],
     caseStudy: {
       challenge:
-        'The hardest problem was keeping chat, whiteboard strokes, and doubt-solver state consistent across multiple users without introducing lag that would break the feel of a live room.',
+        'Handling high-resolution image uploads fast while keeping Cloud Firestore documents within quota limits.',
       architecture:
-        'The frontend is a Vite + React app talking directly to Firebase — no custom backend. Each study room is a top-level node in the Realtime Database, with separate child nodes for chat, whiteboard strokes, and doubt threads, so clients only subscribe to the slices they actually need.',
+        'A Vite + React 19 frontend talks to a Node.js/Express backend wrapping Google Gemini\'s multimodal endpoints. Auth and saved designs persist in Firebase, with adaptive client-side image compression via HTML5 Canvas before upload.',
       dataFlow:
-        'When someone sends a message or draws a stroke, the client writes straight to that room\'s node; Firebase pushes the diff to every subscribed client. That direct write-and-push path is what keeps updates under 100ms without a server round-trip in the middle.',
+        'The user picks a style and budget, then uploads a room photo. After progressive multi-pass compression in the browser, Express sends it to Gemini and streams back advice, furniture links, and rendered concepts that sync to Firestore.',
       decisions:
-        'I chose Firebase Realtime Database over a custom WebSocket server to move faster under the hackathon clock, structuring data so each module (chat, board, doubts) synced independently — a slow whiteboard render couldn\'t stall the chat.',
+        'I offloaded image optimization to the browser via HTML5 Canvas instead of server-side sharp workers, cutting backend compute to zero for faster API roundtrips.',
       tradeoffs:
-        'Firebase made real-time sync fast to ship, but it meant less control over conflict resolution than a CRDT-based approach would give. For a v2, I\'d look at operational transforms for the whiteboard specifically, since freehand strokes are the most collision-prone part of the app.',
+        'Remote multimodal APIs need connectivity and API keys. A v2 could add client-side WebGPU diffusion for instant offline previews.',
     },
   },
   {
@@ -115,15 +114,15 @@ export const projects = [
     ],
     caseStudy: {
       challenge:
-        'The trickiest part wasn\'t training the model — it was getting inference fast enough to feel real-time in a browser with no GPU on the client side.',
+        'Getting inference fast enough to feel real-time in a browser with no GPU on the client side.',
       architecture:
-        'The CNN is trained offline in TensorFlow/Keras and exported, then served through a lightweight prediction endpoint the web app calls with an uploaded image. The frontend just handles the upload and renders the returned diagnosis.',
+        'The CNN is trained offline in TensorFlow/Keras and exported, then served through a lightweight prediction endpoint the web app calls with an uploaded image. The frontend handles the upload and renders the diagnosis.',
       dataFlow:
-        'An uploaded leaf photo is resized and normalized before being sent to the model endpoint, which returns a class-probability distribution. The app surfaces the top match, its confidence, and matching treatment notes.',
+        'An uploaded leaf photo is resized and normalized, then sent to the model endpoint, which returns a class-probability distribution. The app shows the top match, its confidence, and matching treatment notes.',
       decisions:
-        'I prioritized a smaller, faster CNN architecture over squeezing out extra accuracy points, since a diagnosis that takes 10+ seconds to load defeats the point for someone standing in a field.',
+        'I prioritized a smaller, faster CNN over extra accuracy, since a 10+ second diagnosis defeats the point for someone in a field.',
       tradeoffs:
-        'Trading a little accuracy for speed felt like the right call for this use case. A v2 with on-device inference (TensorFlow.js) would remove the network round-trip entirely.',
+        'Trading a little accuracy for speed fit this use case. A v2 with on-device TensorFlow.js inference would remove the network round-trip.',
     },
   },
   {
@@ -178,15 +177,78 @@ export const projects = [
     ],
     caseStudy: {
       challenge:
-        'Configuring reliable, server-side code analyzers for multiple languages without introducing heavy resource footprints or failing silently when local compiler binaries (like g++ or python3) were not installed.',
+        'Running reliable server-side analyzers across several languages without heavy resource footprints or silent failures when local compilers (like g++ or python3) are missing.',
       architecture:
-        'The Express server exposes a central analyze endpoint. It checks system environment capability at runtime: utilizing native compilation flags (-fsyntax-only for GCC) or interpreter AST validation if available, and gracefully falling back to AST parser libraries (Acorn) or robust regex heuristics otherwise.',
+        'The Express server exposes a central analyze endpoint that checks system capability at runtime — native compiler flags (-fsyntax-only), interpreter AST validation, or fallbacks to AST libraries (Acorn) and regex heuristics.',
       dataFlow:
-        'Code snippets are submitted via React. The backend runs the corresponding analyzer engine asynchronously, saves the analysis result to MongoDB Atlas (or drops back to local-history.json), and streams the syntax, smells, and fixes back to the client UI.',
+        'Code is submitted via React; the backend runs the matching analyzer asynchronously, saves the result to MongoDB Atlas (or a local JSON fallback), and streams syntax, smells, and fixes back to the client UI.',
       decisions:
-        'I chose a hybrid persistence architecture (Atlas + Local JSON) to ensure the application remains functional in sandbox or offline server environments where MongoDB is not configured, silently merging local logs with remote logs on the history endpoint.',
+        'I used hybrid persistence (Atlas + local JSON) so the app still works in offline or sandbox environments, silently merging local and remote logs on the history endpoint.',
       tradeoffs:
-        'While regex heuristics for C++ and Java allowed the system to bypass environment installation bottlenecks, they lack full context scope and type checking compared to full-blown semantic compilers. A v2 would dockerize language-specific build-runners for deep static analysis.',
+        'Regex heuristics for C++ and Java avoided install bottlenecks but lack full type checking. A v2 would dockerize language-specific runners for deeper static analysis.',
+    },
+  },
+  {
+    slug: 'kvantum-room',
+    title: 'Kvantum Room',
+    category: 'Real-Time Web Application',
+    tagline: 'Real-time collaborative study platform',
+    timeline: 'Feb 2026 · Hackathon Project',
+    year: 'Feb 2026',
+    image: `${import.meta.env.BASE_URL}shots/kvantum-room-live.png`,
+    liveHref: 'https://ayishanu17-crypto.github.io/study-room/',
+    repoHref: null,
+    screenshots: [
+      { file: shot('shots/kvantum-room-live.png'), caption: 'Kvantum Room — live app landing view', tag: 'Deployed capture' },
+      { file: shot('shots/kvantum-room-live-full.png'), caption: 'Kvantum Room — full-page view', tag: 'Deployed capture' },
+      { file: shot('shots/kvantum-dashboard.jpg'), caption: 'Study dashboard', tag: 'Interface view' },
+      { file: shot('shots/kvantum-chat-room.jpg'), caption: 'Real-time chat room', tag: 'Interface view' },
+      { file: shot('shots/kvantum-ai-solver.jpg'), caption: 'AI doubt assistant', tag: 'Interface view' },
+    ],
+    problem:
+      'Students studying remotely juggle separate apps for chat, whiteboarding, and getting quick help — there was no single space to collaborate in real time.',
+    solution:
+      'A unified study room where classmates chat, draw on a shared whiteboard, and get instant AI-assisted answers, all synced live.',
+    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Firebase'],
+    features: [
+      {
+        title: 'Instant Multi-User Sync',
+        desc: 'Sub-100ms bidirectional synchronization between 10+ participants across chat and board.',
+      },
+      {
+        title: 'Collaborative Vector Canvas',
+        desc: 'Interactive whiteboard allowing multiple students to draw, annotate, and brainstorm concurrently.',
+      },
+      {
+        title: 'AI Doubt Assistant',
+        desc: 'Contextual AI solver integrated directly inside the room for rapid conceptual resolution.',
+      },
+      {
+        title: 'Zero-Server Architecture',
+        desc: 'Serverless client-to-Firebase architecture reducing infrastructure overhead to zero.',
+      },
+    ],
+    role: [
+      'Engineered the real-time sync layer on Firebase, supporting 10+ concurrent users at sub-100ms latency',
+      'Built 5+ core modules, including live chat, an AI-powered doubt solver, and a shared whiteboard',
+      'Implemented a fully responsive UI tested across 3+ device viewports with Tailwind CSS',
+    ],
+    results: [
+      { label: 'Concurrent users', value: '10+' },
+      { label: 'Sync latency', value: '<100ms' },
+      { label: 'Core modules shipped', value: '5+' },
+    ],
+    caseStudy: {
+      challenge:
+        'Keeping chat, whiteboard strokes, and doubt-solver state consistent across users without lag that would break the live feel.',
+      architecture:
+        'A Vite + React app talks directly to Firebase with no custom backend. Each study room is a Realtime Database node with child nodes for chat, whiteboard, and doubts, so clients subscribe only to the slices they need.',
+      dataFlow:
+        'A message or stroke is written straight to the room\'s node, and Firebase pushes the diff to every subscribed client. That direct write-and-push path keeps updates under 100ms with no server round-trip.',
+      decisions:
+        'I chose Firebase Realtime Database over a custom WebSocket server to ship fast under the hackathon clock, structuring data so each module synced independently.',
+      tradeoffs:
+        'Firebase made sync quick to ship but offered less conflict control than a CRDT approach. A v2 would use operational transforms for the whiteboard, the most collision-prone part.',
     },
   },
 ];

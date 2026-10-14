@@ -79,6 +79,19 @@ function ProjectCard({ project, index }) {
                 ↗
               </span>
             </a>
+            {project.repoHref && (
+              <a
+                href={project.repoHref}
+                target="_blank"
+                rel="noreferrer"
+                className="group/link flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-white/50 transition-colors hover:text-white"
+              >
+                GitHub
+                <span className="transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1">
+                  ↗
+                </span>
+              </a>
+            )}
             {project.caseStudy && (
               <a
                 href={`#/case-study/${project.slug}`}
@@ -127,7 +140,7 @@ export default function Projects() {
   const x = useTransform(scrollYProgress, [0, 1], [0, translateX]);
 
   return (
-    <section ref={targetRef} id="work" className="relative h-[300vh] bg-paper text-white">
+    <section ref={targetRef} id="work" className="relative h-[400vh] bg-paper text-white">
       <div className="sticky top-0 flex h-screen flex-col overflow-y-auto overflow-x-hidden">
         {/* Header */}
         <div className="mx-auto flex w-full max-w-[1500px] shrink-0 flex-wrap items-end justify-between gap-x-6 gap-y-2 px-6 pt-7 pb-3 md:px-14 md:pt-10">
